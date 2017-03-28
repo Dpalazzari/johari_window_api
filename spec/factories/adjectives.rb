@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :adjective do
-    name "MyString"
+    name %w(happy religious witty aggressive).sample
   end
 end

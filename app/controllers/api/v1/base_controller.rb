@@ -1,4 +1,4 @@
-class API::V1::BaseController < ApplicationController
+class Api::V1::BaseController < ApplicationController
 
   before_action :cors_preflight_check
   after_action :cors_set_access_control_headers
