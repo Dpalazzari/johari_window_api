@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+class Seed
+
+  def self.start
+    seed = Seed.new
+    seed.generate_adjectives
+  end
+
+  def generate_adjectives
+    adjectives = %w(able accepting adaptable bold brave calm caring 
+    cheerful clever complex confident dependable dignified empathetic 
+    energetic extroverted friendly giving happy helpful idealistic 
+    independent ingenious intelligent introverted kind knowledgeable 
+    logical loving mature modest nervous observant organized patient 
+    powerful proud quiet reflective relaxed religious responsive 
+    searching self-assertive self-conscious sensible sentimental 
+    shy silly spontaneous sympathetic tense trustworthy warm wise witty)
+    
+    adjectives.each { |adj| Adjective.create!(name: adj)}
+  end
+
+end
+
+Seed.start
