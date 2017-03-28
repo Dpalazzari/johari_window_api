@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+  - 2.3.0
+env:
+  - DB=postgres
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database johari_window_api_test;' -U postgres
+script:
+  - bundle exec rspec --tag ~type:special
+cache: bundler
