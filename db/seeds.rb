@@ -9,10 +9,9 @@ class Seed
   end
 
   def self.clear_database
-    User.delete_all
     Assignment.delete_all
+    User.delete_all
     Adjective.delete_all
-    Description.delete_all
   end
 
   def generate_adjectives
@@ -36,10 +35,12 @@ class Seed
 
   def generate_assignments
     User.all.each do |user|
-      5.times do
+      4.times do
         user.assignments.create!(assigned: User.all.sample)
       end
+      user.assignments.create!(assigned: User.all.sample, completed?: true)
     end
+    
   end
 
 end
