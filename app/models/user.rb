@@ -17,4 +17,11 @@ class User < ApplicationRecord
   # who has been assigned to describe this user
   has_many :assigned_to, foreign_key: :assigned_id, class_name: "Assignment"
   has_many :users_described_by, through: :assigned_to, source: :assignee
+
+  def find_assignments_and_users
+    users_to_describe.map do |user|
+      assignment = assignments.where("assigned_id = ?", user.id).first
+      {"user": {"id": user.id, "name": user.name}, "completed?":  assignment.completed? }
+    end
+  end
 end

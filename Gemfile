@@ -16,7 +16,6 @@ gem 'rack-cors'
 group :development, :test do
   gem 'pry-state', platform: :mri
   gem 'rspec-rails', '~> 3.5'
-  gem 'rspec-json_expectations'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'faker'
