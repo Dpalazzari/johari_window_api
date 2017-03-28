@@ -1,25 +1,41 @@
-# README
+# Johari Window App API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a tool developed at the Turing School, based on the [Johari Window](https://en.wikipedia.org/wiki/Johari_window) Exercise developed in 1955 by Joseph Luft and Harrington Ingham. This particular portion of the app supplies an API and back-end database for the front-end [Johari Window Project.](https://github.com/lucyconklin/johari-window)
 
-Things you may want to cover:
+## Quick overview
 
-* Ruby version
+## Getting Started
 
-* System dependencies
+To get this project running on your (mac) machine:
 
-* Configuration
+From the command line, in a directory of your choosing: 
 
-* Database creation
+```
+git clone git@github.com:Dpalazzari/johari_window_api.git
+```
 
-* Database initialization
+Install gems:
 
-* How to run the test suite
+```
+bundle
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Create database:
 
-* Deployment instructions
+```
+rake db:{create,migrate,test:prepare}
+```
 
-* ...
-# johari_window_api
+To run test suite:
+
+```
+rspec
+```
+
+## Development Environment
+
+## Production Environment
+
+## Common Issues
+
+## Going Forward
