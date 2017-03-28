@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Dpalazzari/johari_window_api.svg?branch=master)](https://travis-ci.org/Dpalazzari/johari_window_api)
+
 # Johari Window API
 
 This is a tool developed at the Turing School, based on the [Johari Window](https://en.wikipedia.org/wiki/Johari_window) Exercise developed in 1955 by Joseph Luft and Harrington Ingham. This particular portion of the app supplies an API and back-end database for the front-end [Johari Window Project.](https://github.com/lucyconklin/johari-window)
