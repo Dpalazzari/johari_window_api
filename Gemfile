@@ -12,6 +12,8 @@ gem 'puma', '~> 3.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'faraday'
 gem 'rack-cors'
+gem 'faker'
+
 
 group :development, :test do
   gem 'pry-state', platform: :mri
