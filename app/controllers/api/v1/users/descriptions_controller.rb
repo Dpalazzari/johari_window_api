@@ -2,7 +2,7 @@ class Api::V1::Users::DescriptionsController < Api::V1::BaseController
 
   def index
     describee = User.find(params[:id])
-    render json: describee.format_descriptions
+    render json: Johari.new(describee).format_descriptions 
   end
   
   def create
