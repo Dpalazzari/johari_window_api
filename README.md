@@ -42,31 +42,31 @@ All responses are in JSON.
 This request will return a list of 56 adjectives as described by the original Johari Window. The response will look like this:
 ```
 [
-"able",
-"accepting",
-...
-"wise",
-"witty"
+  "able",
+  "accepting",
+  ...
+  "wise",
+  "witty"
 ]
 ```
 #### `GET /:id/assignments`
 For a given user id, this request will return the names and ids of people to be described. The format will look something like this:
 ```
 [
-{
-user: {
-id: 70,
-name: "Rodrik Ryswell"
-},
-completed?: true
-},
-{
-user: {
-id: 119,
-name: "Jeyne Westerling"
-},
-completed?: false
-}
+  {
+    user: {
+        id: 70,
+        name: "Rodrik Ryswell"
+          },
+    completed?: true
+  },
+  {
+    user: {
+        id: 119,
+        name: "Jeyne Westerling"
+          },
+    completed?: false
+  }
 ]
 ```
 
