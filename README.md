@@ -69,6 +69,8 @@ For a given user id, this request will return the names and ids of people to be 
   }
 ]
 ```
+#### `POST /:id/descriptions`
+For a given user id, this request will create descriptions for the user. The response body will contain a status of 204 if the POST is successful, and a 304 if the POST fails.
 
 ## Development Environment
 
