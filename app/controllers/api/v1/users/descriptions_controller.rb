@@ -1,17 +1,16 @@
 class Api::V1::Users::DescriptionsController < Api::V1::BaseController
   
   def create
-    describee    = User.find(params[:id])
+    describee = User.find(params[:id])
     descriptions = JSON.parse(request.body.read)
     describer    = User.find(descriptions['describer_id'])
-    assignment   = Assignment.where("assignee_id = ? AND assigned_id = ?", describer.id, describee.id).first
-    descriptions['johari'].each do |joh|
-      adj = Adjective.find_by(name: joh)
-      describee.descriptions.create(describer_id: describer.id, adjective_id: adj.id)
+    describee.create_descriptions(descriptions['johari'], describer)
+    if describee.all_descriptions_completed?(describer.id, descriptions['johari'])
+      Assignment.complete(describee.id, describer.id)
+      render status: 202
+    else
+      render status: 304
     end
-    assignment.update(completed?: true)
-    assignment.save
-    render status: 202
   end
 
 end
