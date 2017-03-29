@@ -24,4 +24,16 @@ class User < ApplicationRecord
       {"user": {"id": user.id, "name": user.name}, "completed?":  assignment.completed? }
     end
   end
+
+  def create_descriptions(descriptions, describer)
+    descriptions.each do |joh|
+      adj = Adjective.find_by(name: joh)
+      self.descriptions.create(describer_id: describer.id, adjective_id: adj.id)
+    end
+
+  end
+
+  def all_descriptions_completed?(describer_id, descriptions)
+    self.descriptions.where("describer_id = ?", describer_id).count == descriptions.count
+  end
 end
