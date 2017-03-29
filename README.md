@@ -2,15 +2,14 @@
 
 # Johari Window API
 
-This is a tool developed at the Turing School, based on the [Johari Window](https://en.wikipedia.org/wiki/Johari_window) Exercise developed in 1955 by Joseph Luft and Harrington Ingham. This particular portion of the app supplies an API and back-end database for the front-end [Johari Window Project.](https://github.com/lucyconklin/johari-window)
-
 ## Quick overview
+This is a tool developed at the Turing School, based on the [Johari Window](https://en.wikipedia.org/wiki/Johari_window) Exercise developed in 1955 by Joseph Luft and Harrington Ingham. This particular portion of the app supplies an API and back-end database for the front-end [Johari Window Project.](https://github.com/lucyconklin/johari-window)
 
 ## Getting Started
 
 To get this project running on your (mac) machine:
 
-From the command line, in a directory of your choosing: 
+From the command line, in a directory of your choosing:
 
 ```
 git clone git@github.com:Dpalazzari/johari_window_api.git
@@ -18,25 +17,65 @@ git clone git@github.com:Dpalazzari/johari_window_api.git
 
 Install gems:
 
-```
-bundle
-```
+#### `bundle`
 
-Create database:
+Create database, migrate the database, seed and load the schema with this line:
 
-```
-rake db:{create,migrate,test:prepare}
-```
+#### `rails db:{create,migrate,schema:load}`
+
+To seed the database
+
+#### `rails db:seed`
 
 To run test suite:
 
+#### `rspec`
+
+start the server to test out the endpoints.
+
+#### `rails s`
+
+## API Endpoints
+All responses are in JSON.
+
+#### [`GET /adjectives`](http://localhost:3000/api/v1/adjectives)
+This request will return a list of 56 adjectives as described by the original Johari Window. The response will look like this:
 ```
-rspec
+[
+"able",
+"accepting",
+...
+"wise",
+"witty"
+]
+```
+#### `GET /:id/assignments`
+For a given user id, this request will return the names and ids of people to be described. The format will look something like this:
+```
+[
+{
+user: {
+id: 70,
+name: "Rodrik Ryswell"
+},
+completed?: true
+},
+{
+user: {
+id: 119,
+name: "Jeyne Westerling"
+},
+completed?: false
+}
+]
 ```
 
 ## Development Environment
 
 ## Production Environment
+
+## Customization
+The seed file can be found in `/db/seeds.rb`. We made use of one of our favorite gems here: [Faker](https://github.com/stympy/faker). Check out the docs to see other possibilities and seed your own custom data for your test environment.
 
 ## Common Issues
 
