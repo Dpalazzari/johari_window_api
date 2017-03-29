@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       namespace :users do 
         get '/:id/assignments', to: 'assignments#index'
         post '/:id/descriptions', to: 'descriptions#create'
+        get '/:id/descriptions', to: 'descriptions#index'
       end
     end
   end

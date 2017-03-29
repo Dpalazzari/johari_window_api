@@ -41,4 +41,32 @@ describe 'Users Descriptions Endpoint', :type => :request do
     expect(user2.descriptions.count).to eq(0)
     expect(assignment.completed?).to be_falsey
   end
+
+  it "get /api/v1/users/:id/descriptions" do
+    user1, user2, user3 = create_list(:user, 3)
+    assignment1 = create(:assignment, assignee: user3, assigned: user1)
+    assignment2 = create(:assignment, assignee: user2, assigned: user1)
+    create(:adjective, name: "shy")
+    create(:adjective, name: "witty")
+    create(:adjective, name: "able")
+    create(:adjective, name: "religious")
+    create(:description, describee: user1, describer: user1, adjective_id: Adjective.last.id)
+    create(:description, describee: user1, describer: user1, adjective_id: Adjective.second_to_last.id)
+    create(:description, describee: user1, describer: user2, adjective_id: Adjective.last.id) 
+    create(:description, describee: user1, describer: user2, adjective_id: Adjective.first.id) 
+    create(:description, describee: user1, describer: user3, adjective_id: Adjective.last.id) 
+    
+    get "/api/v1/users/#{user1.id}/descriptions"
+
+    raw_descriptions = JSON.parse(response.body)
+    expect(response).to be_success
+    expect(raw_descriptions['arena'].count).to eq(1)
+    expect(raw_descriptions['arena'].first['name']).to eq('religious')
+    expect(raw_descriptions['facade'].count).to eq(1)
+    expect(raw_descriptions['facade'].first['name']).to eq('able')
+    expect(raw_descriptions['blind-spot'].count).to eq(1)
+    expect(raw_descriptions['blind-spot'].first['name']).to eq('shy')
+    expect(raw_descriptions['unknown'].count).to eq(1)
+    expect(raw_descriptions['unknown'].first['name']).to eq('witty')
+  end
 end
