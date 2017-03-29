@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get '/adjectives', to: 'adjectives#index'
       namespace :users do 
         get '/:id/assignments', to: 'assignments#index'
+        post '/:id/descriptions', to: 'descriptions#create'
       end
     end
   end
