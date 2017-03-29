@@ -24,5 +24,28 @@ RSpec.describe User, type: :model do
       expect(assignment_collection.first).to have_key(:user)
       expect(assignment_collection.first).to have_key(:completed?)
     end
+
+    it '.create_descriptions' do
+      user, user2 = create_list(:user, 2)
+      descriptions = ['shy', 'religious']
+      create(:adjective, name: 'shy')
+      create(:adjective, name: 'religious')
+
+      user.create_descriptions(descriptions, user2)
+
+      expect(user.descriptions.count).to eq(2)
+    end
+
+    it '.all_descriptions_completed?' do
+      user, user2 = create_list(:user, 2)
+      descriptions = ['shy', 'religious']
+      create(:adjective, name: 'shy')
+      create(:adjective, name: 'religious')
+
+      user.create_descriptions(descriptions, user2)
+      result = user.all_descriptions_completed?(user2.id, descriptions)
+
+      expect(result).to be_truthy
+    end
   end
 end

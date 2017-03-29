@@ -30,10 +30,9 @@ class User < ApplicationRecord
       adj = Adjective.find_by(name: joh)
       self.descriptions.create(describer_id: describer.id, adjective_id: adj.id)
     end
-
   end
 
   def all_descriptions_completed?(describer_id, descriptions)
-    self.descriptions.where("describer_id = ?", describer_id).count == descriptions.count
+    self.descriptions.where("describer_id = ?", describer_id).count == descriptions.count && descriptions != []
   end
 end
