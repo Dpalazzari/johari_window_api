@@ -72,6 +72,15 @@ For a given user id, this request will return the names and ids of people to be 
 #### `POST /:id/descriptions`
 For a given user id, this request will create descriptions for the user. The response body will contain a status of 204 if the POST is successful, and a 304 if the POST fails.
 
+JSON objects need to be posted to the API in this format:
+
+```
+ { 
+  :johari => ["religious", "shy", "able", "self-assertive"], 
+  :describer_id => 2
+ }
+```
+
 ## Development Environment
 
 ## Production Environment
