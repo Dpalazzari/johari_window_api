@@ -70,7 +70,7 @@ For a given user id, this request will return the names and ids of people to be 
 ]
 ```
 
-#### [`GET /users/:id](http://johariwindowapi.herokuapp.com/api/v1/users/1)
+#### [`GET /users/:id`](http://johariwindowapi.herokuapp.com/api/v1/users/1)
 For a given user id, this request will return the name, id, created_at, and updated_at for a given user. 
 
 ```
