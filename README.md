@@ -69,6 +69,19 @@ For a given user id, this request will return the names and ids of people to be 
   }
 ]
 ```
+
+#### [`GET /users/:id](http://johariwindowapi.herokuapp.com/api/v1/users/1)
+For a given user id, this request will return the name, id, created_at, and updated_at for a given user. 
+
+```
+{
+  id: 1,
+  name: "Mebble",
+  created_at: "2017-03-29T00:37:58.779Z",
+  updated_at: "2017-03-29T00:37:58.779Z"
+}
+```
+
 #### `POST /:id/descriptions`
 For a given user id, this request will create descriptions for the user. The response body will contain a status of 204 if the POST is successful, and a 304 if the POST fails.
 
