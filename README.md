@@ -38,7 +38,7 @@ start the server to test out the endpoints.
 ## API Endpoints
 All responses are in JSON.
 
-#### [`GET /adjectives`](http://localhost:3000/api/v1/adjectives)
+#### [`GET /adjectives`](http://johariwindowapi.herokuapp.com/api/v1/adjectives)
 This request will return a list of 56 adjectives as described by the original Johari Window. The response will look like this:
 ```
 [
@@ -49,7 +49,7 @@ This request will return a list of 56 adjectives as described by the original Jo
   "witty"
 ]
 ```
-#### `GET /:id/assignments`
+#### `GET /:id/assignments`(http://johariwindowapi.herokuapp.com/api/v1/users/1/aassignments)
 For a given user id, this request will return the names and ids of people to be described. The format will look something like this:
 ```
 [
