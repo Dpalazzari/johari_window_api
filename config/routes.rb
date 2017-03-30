@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get '/', to: 'home#index', as: 'root'
+
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       get '/adjectives', to: 'adjectives#index'
