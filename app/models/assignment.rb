@@ -10,4 +10,8 @@ class Assignment < ApplicationRecord
     assignment.update(completed?: true)
     assignment.save
   end
+
+  def self.valid?(describee_id, describer_id)
+    Assignment.where('assignee_id' => describer_id, 'assigned_id' => describee_id, 'completed?' => false).empty?
+  end
 end

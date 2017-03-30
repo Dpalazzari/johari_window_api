@@ -42,6 +42,23 @@ describe 'Users Descriptions Endpoint', :type => :request do
     expect(assignment.completed?).to be_falsey
   end
 
+  it 'Posts /api/v1/users/:id/descriptions already_exists_sad_path' do
+    user  = create(:user, name: 'Barric Donderrion')
+    user2 = create(:user, name: 'Cersei')
+
+    assignment = create(:assignment, assignee: user, assigned: user2, completed?: true)
+
+    adjectives = ['shy', 'religious', 'cool']
+    headers = { 'CONTENT_TYPE' => 'application/json' }
+    json = {:johari => adjectives, :describer_id => user2.id }
+
+    post "/api/v1/users/#{user.id}/descriptions", json.to_json, headers
+    assignment.reload
+
+    expect(response).to_not be_success
+    expect(response.status).to eq(402)
+  end
+
   it "get /api/v1/users/:id/descriptions" do
     user1, user2, user3 = create_list(:user, 3)
     assignment1 = create(:assignment, assignee: user3, assigned: user1)
