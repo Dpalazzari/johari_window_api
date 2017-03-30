@@ -49,7 +49,7 @@ This request will return a list of 56 adjectives as described by the original Jo
   "witty"
 ]
 ```
-#### [`GET /:id/assignments`](http://johariwindowapi.herokuapp.com/api/v1/users/1/aassignments)
+#### [`GET /:id/assignments`](http://johariwindowapi.herokuapp.com/api/v1/users/1/assignments)
 For a given user id, this request will return the names and ids of people to be described. The format will look something like this:
 ```
 [
