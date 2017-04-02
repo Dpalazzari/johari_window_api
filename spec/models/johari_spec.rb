@@ -34,16 +34,6 @@ RSpec.describe Johari, type: :model do
     end
   end
 
-  describe '#get_frequency' do
-    it 'returns fraction of times an adjective was selected' do
-      adjective = create(:adjective)
-      create_list(:description, 3, describee: user, adjective: adjective)
-      create_list(:description, 1, describee: user)
-
-      expect(johari.get_frequency(adjective)).to eq 0.75
-    end
-  end
-
   describe 'formatting descriptions' do
 
     let(:arena_adj)   { create(:adjective, name: 'arena') }
@@ -52,59 +42,120 @@ RSpec.describe Johari, type: :model do
     let(:unknown_adj) { create(:adjective, name: 'unknown') }
 
     before do 
-      create(:description, describee: user, describer: user, adjective: arena_adj)
-      create(:description, describee: user, adjective: arena_adj)
-      create(:description, describee: user, describer: user, adjective: facade_adj)
-      create(:description, describee: user, adjective: blind_adj)
+      describer = create(:user)
+      create_list(:description, 7, describee: user, describer: user, adjective: arena_adj)
+      create_list(:description, 4, describee: user, describer: describer, adjective: arena_adj)
+      create_list(:description, 3, describee: user, describer: user, adjective: facade_adj)
+      create_list(:description, 6, describee: user, describer: describer, adjective: blind_adj)
+      create(:description, adjective: unknown_adj)
     end
 
-    describe '#create_window' do
-      it 'maps adjectives to hash with name and frequency' do
-        expected= [{ 'name': arena_adj.name, 'frequency': 0.5 }]
-        window = johari.create_window([arena_adj])
-        expect(window).to eq expected
+    describe '#arena_adjectives' do
+      it 'returns adjectives' do
+
+        expect(johari.arena_adjectives).to eq [arena_adj] * 4
       end
     end
 
-    describe '#arena' do
-      it 'returns window of self described and peer described' do
-        expected = johari.create_window([arena_adj])
+    describe '#facade_adjectives' do
+      it 'returns adjectives' do
 
-        expect(johari.arena).to eq expected
+        expect(johari.facade_adjectives).to eq [facade_adj] * 3
       end
     end
 
-    describe '#facade' do
-      it 'returns window of self described and peer described' do
-        expected = johari.create_window([facade_adj])
+    describe '#blind_spot_adjectives' do
+      it 'returns adjectives' do
 
-        expect(johari.facade).to eq expected
+        expect(johari.blind_spot_adjectives).to eq [blind_adj] * 6
       end
     end
 
-    describe '#blind_spot' do
-      it 'returns window of self described and peer described' do
-        expected = johari.create_window([blind_adj])
+    describe '#unknown_adjectives' do
+      it 'returns adjectives' do
 
-        expect(johari.blind_spot).to eq expected
+        expect(johari.unknown_adjectives).to eq [unknown_adj]
       end
     end
 
-    describe '#unknown' do
-      it 'returns window of self described and peer described' do
-        expected = johari.create_window([unknown_adj])
+    describe '#window_with_freq' do
+      context 'with arena adjectives' do
+        it 'returns window' do
+          expected = [{ 'name': arena_adj.name, 'frequency': 4.0}]
+          result = johari.window_with_freq(johari.arena_adjectives)
 
-        expect(johari.unknown).to eq expected
+          expect(result).to eq expected
+        end
+      end
+
+      context 'blind spot adjectives' do
+        it 'with returns window' do
+          expected = [{ 'name': blind_adj.name, 'frequency': 6.0 }]
+          result = johari.window_with_freq(johari.blind_spot_adjectives)
+
+          expect(result).to eq expected
+        end
+      end
+    end
+
+    describe '#window' do
+      context 'with unknown adjectives'
+        it 'returns window' do
+          expected = [{ 'name': unknown_adj.name, 'frequency': 1 }]
+          result = johari.window(johari.unknown_adjectives)
+
+          expect(result).to eq expected
+        end
+
+      context 'with facade adjectives' do
+        it 'returns window' do
+          expected = [{ 'name': facade_adj.name, 'frequency': 1 }]
+          result = johari.window(johari.facade_adjectives)
+
+          expect(result).to eq expected
+        end
+      end
+    end
+
+    describe '#arena_window' do
+      it 'returns arena window with frequencies' do
+        expected = johari.window_with_freq(johari.arena_adjectives)
+
+        expect(johari.arena_window).to eq expected
+      end
+    end
+
+    describe '#facade_window' do
+      it 'returns blind spot window with frequencies' do
+        expected = johari.window(johari.facade_adjectives)
+
+        expect(johari.facade_window).to eq expected
+      end
+    end
+
+    describe '#blind_spot_window' do
+      it 'returns blind spot window without frequencies' do
+        expected = johari.window_with_freq(johari.blind_spot_adjectives)
+
+        expect(johari.blind_spot_window).to eq expected
+      end
+    end
+
+    describe '#unknown_window' do
+      it 'returns blind spot window without frequencies' do
+        expected = johari.window(johari.unknown_adjectives)
+
+        expect(johari.unknown_window).to eq expected
       end
     end
 
     describe '#format_descriptions' do
       it 'returns hash with keys as four window quadrants' do
         expected = Hash.new(0)
-        expected['arena']      = johari.arena
-        expected['facade']     = johari.facade
-        expected['blind-spot'] = johari.blind_spot
-        expected['unknown']    = johari.unknown
+        expected["arena"]      = johari.arena_window
+        expected["facade"]     = johari.facade_window
+        expected["blind-spot"] = johari.blind_spot_window
+        expected["unknown"]    = johari.unknown_window
 
         expect(johari.format_descriptions).to eq expected
       end
