@@ -1,11 +1,9 @@
 class Johari
-  # attr_reader :user, :self_described, :peer_described
+
   attr_reader :user
 
   def initialize(user)
     @user = user
-    # @self_described = Description.find_adjectives(user.descriptions.where("describer_id = ?", user.id)) 
-    # @peer_described = Description.find_adjectives(user.descriptions.where.not("describer_id = ?", user.id)) 
   end
 
   def self_described
@@ -28,9 +26,7 @@ class Johari
   end
 
   def window(adjectives)
-    adjectives.uniq.map do |adj| 
-      {'name': adj.name, 'frequency': 1}
-    end
+    adjectives.uniq.map { |adj| {'name': adj.name, 'frequency': 1} }
   end
 
   def window_with_freq(adjectives)
@@ -49,27 +45,19 @@ class Johari
   end
 
   def arena_adjectives
-    peer_described.find_all do |adjective|
-      self_described.include?(adjective)
-    end
+    peer_described.find_all { |adj| self_described.include?(adj) }
   end
  
   def facade_adjectives
-    self_described.find_all do |adjective|
-      !peer_described.include?(adjective)
-    end
+    self_described.find_all { |adj| !peer_described.include?(adj) }
   end
   
   def blind_spot_adjectives
-    peer_described.find_all do |adjective|
-      !self_described.include?(adjective)
-    end
+    peer_described.find_all { |adj| !self_described.include?(adj) }
   end
   
   def unknown_adjectives
-    Adjective.all.find_all do |adj|
-      !user.adjectives.include?(adj)
-    end
+    Adjective.all.find_all { |adj| !user.adjectives.include?(adj) }
   end
 
   def arena_window
