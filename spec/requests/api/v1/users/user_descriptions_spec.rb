@@ -56,7 +56,7 @@ describe 'Users Descriptions Endpoint', :type => :request do
     assignment.reload
 
     expect(response).to_not be_success
-    expect(response.status).to eq(402)
+    expect(response.status).to eq(401)
   end
 
   it "get /api/v1/users/:id/descriptions" do

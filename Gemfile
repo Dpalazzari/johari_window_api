@@ -14,6 +14,7 @@ gem 'faraday'
 gem 'rack-cors'
 gem 'faker'
 gem 'redcarpet'
+gem 'rack-cors', :require => 'rack/cors'
 
 
 group :development, :test do
