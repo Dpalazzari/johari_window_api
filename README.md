@@ -96,6 +96,17 @@ JSON objects need to be posted to the API in this format:
  }
 ```
 
+#### `GET /cohorts`
+
+This will return JSON of all available cohorts.
+
+```javascript
+  [
+    {"id"=>1, "name"=>"1610backend", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05},
+    {"id"=>2, "name"=>"1610frontend", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05}
+  ]
+```
+
 ## Development Environment
 
 ## Production Environment
