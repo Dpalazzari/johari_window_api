@@ -42,7 +42,7 @@ All responses are in JSON.
 
 #### [`GET /adjectives`](http://johariwindowapi.herokuapp.com/api/v1/adjectives)
 This request will return a list of 56 adjectives as described by the original Johari Window. The response will look like this:
-```
+```javascript
 [
   "able",
   "accepting",
@@ -53,7 +53,7 @@ This request will return a list of 56 adjectives as described by the original Jo
 ```
 #### [`GET /:id/assignments`](http://johariwindowapi.herokuapp.com/api/v1/users/1/assignments)
 For a given user id, this request will return the names and ids of people to be described. The format will look something like this:
-```
+```javascript
 [
   {
     user: {
@@ -75,7 +75,7 @@ For a given user id, this request will return the names and ids of people to be 
 #### [`GET /users/:id`](http://johariwindowapi.herokuapp.com/api/v1/users/1)
 For a given user id, this request will return the name, id, created_at, and updated_at for a given user. 
 
-```
+```javascript
 {
   id: 1,
   name: "Mebble",
@@ -89,7 +89,7 @@ For a given user id, this request will create descriptions for the user. The res
 
 JSON objects need to be posted to the API in this format:
 
-```
+```javascript
  { 
   :johari => ["religious", "shy", "able", "self-assertive"], 
   :describer_id => 2
@@ -105,6 +105,21 @@ This will return JSON of all available cohorts.
     {"id"=>1, "name"=>"1610backend", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05},
     {"id"=>2, "name"=>"1610frontend", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05}
   ]
+
+
+#### `POST /assignments`
+For given groups of users, this request will create unique assignments between each pair of users (as long as there is not an open assignment between them).
+
+JSON objects need to be posted to the API in this format:
+
+```javascript
+ { 
+  group:   [
+              [ {name: 'Drew', id: 0}, {name: 'Kyle', id: 1} ],
+              [ {name: 'Lucy', id: 2}, {name: 'Annie', id: 3} ],
+              [ {name: 'Drew', id: 0}, {name: 'Amy', id: 4}, {name: 'Kyle', id: 1} ]
+            ] 
+ }
 ```
 
 ## Development Environment

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      resources :assignments, only: [:create]
       get '/adjectives', to: 'adjectives#index'
       resources :cohorts, only: [:index]
       namespace :users do 
