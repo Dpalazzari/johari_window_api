@@ -122,6 +122,21 @@ JSON objects need to be posted to the API in this format:
  }
 ```
 
+#### `GET /cohorts/:cohort_id/users`
+
+For a given cohort, this endpoint will return JSON of all the users that belong to the cohort.
+
+```javascript
+  [
+    {
+      "id"=>1, "name"=>"Drew", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05", "cohort_id"=>11
+    },
+    {
+      "id"=>2, "name"=>"Kyle", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05", "cohort_id"=>1
+    }
+  ]
+```
+
 ## Development Environment
 
 ## Production Environment
