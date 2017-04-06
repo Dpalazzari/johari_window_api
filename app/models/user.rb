@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :assigned_to, foreign_key: :assigned_id, class_name: "Assignment"
   has_many :users_described_by, through: :assigned_to, source: :assignee
 
+  validates :github, :token, presence: true, uniqueness: true
+  validates :name, presence: true
+
   def find_assignments_and_users
     users_to_describe.map do |user|
       assignment = assignments.where("assigned_id = ?", user.id).first

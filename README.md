@@ -111,6 +111,18 @@ JSON objects need to be posted to the API in this format:
  }
 ```
 
+#### `POST /users`
+
+To create a user through our API, make a post request to this endpoint with the following JSON:
+
+```javascript
+  { 
+    name: 'Drew', 
+    github: 'Dpalazzari', 
+    token: 'KLDShglskhg324235msfn'
+  }
+```
+
 ## Development Environment
 
 ## Production Environment

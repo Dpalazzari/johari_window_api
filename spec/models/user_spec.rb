@@ -13,6 +13,14 @@ RSpec.describe User, type: :model do
     it { should have_many :users_described_by }
   end
 
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :github }
+    it { is_expected.to validate_presence_of :token } 
+    it { is_expected.to validate_uniqueness_of :github } 
+    it { is_expected.to validate_uniqueness_of :token }  
+  end
+
   describe 'methods' do
     it '.find_assignments_and_users' do
       user = create(:user)
