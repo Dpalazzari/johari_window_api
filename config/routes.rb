@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       resources :assignments, only: [:create]
       resources :users, only: [:create]
       get '/adjectives', to: 'adjectives#index'
+      resources :cohorts, only: [:index] do
+        get '/users', to: 'cohorts/users#index'
+      end
       namespace :users do 
         get '/:id/assignments', to: 'assignments#index'
         post '/:id/descriptions', to: 'descriptions#create'

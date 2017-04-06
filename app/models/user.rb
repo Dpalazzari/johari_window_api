@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
   validates :github, :token, presence: true, uniqueness: true
   validates :name, presence: true
+  belongs_to :cohort, optional: true
 
   def find_assignments_and_users
     users_to_describe.map do |user|

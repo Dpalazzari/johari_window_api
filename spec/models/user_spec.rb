@@ -11,6 +11,7 @@ RSpec.describe User, type: :model do
     it { should have_many :users_to_describe }
     it { should have_many :assigned_to }
     it { should have_many :users_described_by }
+    it { should belong_to :cohort }
   end
 
   describe 'validations' do
