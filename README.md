@@ -96,17 +96,6 @@ JSON objects need to be posted to the API in this format:
  }
 ```
 
-#### `GET /cohorts`
-
-This will return JSON of all available cohorts.
-
-```javascript
-  [
-    {"id"=>1, "name"=>"1610backend", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05},
-    {"id"=>2, "name"=>"1610frontend", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05}
-  ]
-
-
 #### `POST /assignments`
 For given groups of users, this request will create unique assignments between each pair of users (as long as there is not an open assignment between them).
 
@@ -121,6 +110,27 @@ JSON objects need to be posted to the API in this format:
             ] 
  }
 ```
+
+#### `POST /users`
+
+To create a user through our API, make a post request to this endpoint with the following JSON:
+
+```javascript
+  { 
+    name: 'Drew', 
+    github: 'Dpalazzari', 
+    token: 'KLDShglskhg324235msfn'
+  }
+
+#### `GET /cohorts`
+
+This will return JSON of all available cohorts.
+
+```javascript
+  [
+    {"id"=>1, "name"=>"1610backend", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05},
+    {"id"=>2, "name"=>"1610frontend", "created_at"=>"2017-04-05", "updated_at"=>"2017-04-05}
+  ]
 
 #### `GET /cohorts/:cohort_id/users`
 

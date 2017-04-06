@@ -18,7 +18,9 @@ class User < ApplicationRecord
   has_many :assigned_to, foreign_key: :assigned_id, class_name: "Assignment"
   has_many :users_described_by, through: :assigned_to, source: :assignee
 
-  belongs_to :cohort
+  validates :github, :token, presence: true, uniqueness: true
+  validates :name, presence: true
+  belongs_to :cohort, optional: true
 
   def find_assignments_and_users
     users_to_describe.map do |user|
