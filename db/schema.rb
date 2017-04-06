@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328225145) do
+ActiveRecord::Schema.define(version: 20170405222047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20170328225145) do
     t.boolean  "completed?",  default: false
   end
 
+  create_table "cohorts", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "descriptions", force: :cascade do |t|
     t.integer  "describer_id"
     t.integer  "describee_id"
@@ -43,6 +49,8 @@ ActiveRecord::Schema.define(version: 20170328225145) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "cohort_id"
+    t.index ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
   end
 
   add_foreign_key "assignments", "users", column: "assigned_id"
@@ -50,4 +58,5 @@ ActiveRecord::Schema.define(version: 20170328225145) do
   add_foreign_key "descriptions", "adjectives"
   add_foreign_key "descriptions", "users", column: "describee_id"
   add_foreign_key "descriptions", "users", column: "describer_id"
+  add_foreign_key "users", "cohorts"
 end
