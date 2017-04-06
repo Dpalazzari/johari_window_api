@@ -4,6 +4,7 @@ class Seed
     clear_database
     seed = Seed.new
     seed.generate_adjectives
+    seed.generate_cohorts
     seed.generate_users
     seed.generate_assignments
   end
@@ -11,6 +12,7 @@ class Seed
   def self.clear_database
     Assignment.delete_all
     User.delete_all
+    Cohort.delete_all
     Adjective.delete_all
   end
 
@@ -30,9 +32,17 @@ class Seed
     adjectives.each { |adj| Adjective.create!(name: adj)}
   end
 
+  def generate_cohorts
+    Cohort.create!(name: '1610BE')
+    Cohort.create!(name: '1610FE')
+    Cohort.create!(name: '1611BE')
+    Cohort.create!(name: '1611FE')
+  end
+
   def generate_users
     150.times do 
-      User.create!(name: Faker::GameOfThrones.character)
+      github_name = 'github' + rand(100000).to_s
+      User.create!(name: Faker::GameOfThrones.character, github: github_name, token: SecureRandom.hex, cohort: Cohort.all.sample)
     end
   end
 
@@ -41,11 +51,14 @@ class Seed
       4.times do
         user.assignments.create!(assigned: User.all.sample)
       end
-      user.assignments.create!(assigned: User.all.sample, completed?: true)
-    end
-    
+      described = User.all.sample
+      user.assignments.create!(assigned: described, completed?: true)
+      10.times do
+        described.descriptions.create!(describer: user, adjective: Adjective.all.sample)
+      end
+    end 
   end
-
+    
 end
 
 Seed.start
