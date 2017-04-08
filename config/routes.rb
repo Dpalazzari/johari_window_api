@@ -10,7 +10,8 @@ Rails.application.routes.draw do
       resources :cohorts, only: [:index] do
         get '/users', to: 'cohorts/users#index'
       end
-      namespace :users do 
+      namespace :users do
+        get '/by_github', to: 'github#show'
         get '/:id/assignments', to: 'assignments#index'
         post '/:id/descriptions', to: 'descriptions#create'
         get '/:id/descriptions', to: 'descriptions#index'
