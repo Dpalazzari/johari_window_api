@@ -148,6 +148,16 @@ For a given cohort, this endpoint will return JSON of all the users that belong 
   ]
 ```
 
+#### `GET /users/by_github?name=:name`
+
+For a given github username, this endpoint will return JSON of a matching user.
+
+```javascript
+  {
+    "id"=>1, "name"=>"Drew", "github: "Dpalazzari", created_at"=>"2017-04-05", "updated_at"=>"2017-04-05", "cohort_id"=>11
+  }
+```
+
 ## Development Environment
 
 ## Production Environment
