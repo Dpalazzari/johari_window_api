@@ -23,6 +23,12 @@ Install gems:
 
 Create database, migrate the database, seed and load the schema with this line:
 
+Required environmental variables:
+
+#### `figaro install`
+
+Then copy and paste `application.sample.yml` into `application.yml` and fill in environment variables with their correct values. Contact developers to get access to environment variables.
+
 #### `rails db:{create,migrate,schema:load}`
 
 To seed the database
