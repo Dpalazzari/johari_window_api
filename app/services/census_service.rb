@@ -18,4 +18,18 @@ class CensusService
       faraday.adapter Faraday.default_adapter
     end
   end
+
+  def self.get_cohort_by_github(username)
+    new.get_cohort_by_github(username)
+  end
+
+  def get_cohort_by_github(username)
+    res = conn.get do |req|
+      req.url '/api/v1/users/41'
+      # req.params['q'] = username
+      req.params['access_token'] = ENV['CENSUS_TOKEN']
+    end
+    JSON.parse(res.body)['cohort']
+  end
+
 end

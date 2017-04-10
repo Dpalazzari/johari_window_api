@@ -23,6 +23,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.filter_sensitive_data('<CENSUS_CLIENT_ID>') { ENV["CENSUS_CLIENT_ID"] }
   config.filter_sensitive_data('<CENSUS_SECRET_ID>') { ENV["CENSUS_SECRET_ID"] }
+  config.filter_sensitive_data('<CENSUS_TOKEN>') { ENV["CENSUS_TOKEN"] }
 end
 
 RSpec.configure do |config|
