@@ -7,6 +7,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     else
       user = User.new(user_params)
       if user.save
+        user.add_cohort
         render json: user
       else
         render json: {error: 'User not created'}, status: 400

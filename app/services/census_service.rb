@@ -25,11 +25,11 @@ class CensusService
 
   def get_cohort_by_github(username)
     res = conn.get do |req|
-      req.url '/api/v1/users/41'
-      # req.params['q'] = username
+      req.url '/api/v1/users/by_github'
+      req.params['q'] = username
       req.params['access_token'] = ENV['CENSUS_TOKEN']
     end
-    JSON.parse(res.body)['cohort']
+    JSON.parse(res.body)['cohort']['name']
   end
 
 end
