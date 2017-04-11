@@ -56,5 +56,12 @@ RSpec.describe User, type: :model do
 
       expect(result).to be_truthy
     end
+
+    it '#add_cohort', vcr: true do
+      user = create(:user, github: 'kheppenstall')
+      user.add_cohort
+
+      expect(user.cohort.name).to eq '1610-BE'
+    end
   end
 end

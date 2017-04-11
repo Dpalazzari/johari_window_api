@@ -15,6 +15,7 @@ gem 'rack-cors'
 gem 'faker'
 gem 'redcarpet'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'figaro'
 
 
 group :development, :test do
@@ -24,6 +25,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

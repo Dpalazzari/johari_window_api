@@ -39,4 +39,10 @@ class User < ApplicationRecord
   def all_descriptions_completed?(describer_id, descriptions)
     self.descriptions.where("describer_id = ?", describer_id).count == descriptions.count && descriptions != []
   end
+
+  def add_cohort
+    cohort_name = CensusService.get_cohort_by_github(github)
+    self.cohort = Cohort.find_or_create_by(name: cohort_name)
+    self.save
+  end
 end
