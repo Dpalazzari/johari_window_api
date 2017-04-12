@@ -177,8 +177,8 @@ The seed file can be found in `/db/seeds.rb`. We made use of one of our favorite
 
 ## Primary Contributors
 
-[Drew Palazzari](https://github.com/Dpalazzari)
-[Annie Wolff](https://github.com/wlffann)
-[Lucy Conklin](https://github.com/lucyconklin)
-[Kyle Heppenstall](https://github.com/kheppenstall)
-[Amy Kintner](https://github.com/akintner)
+- [Drew Palazzari](https://github.com/Dpalazzari)
+- [Annie Wolff](https://github.com/wlffann)
+- [Lucy Conklin](https://github.com/lucyconklin)
+- [Kyle Heppenstall](https://github.com/kheppenstall)
+- [Amy Kintner](https://github.com/akintner)
