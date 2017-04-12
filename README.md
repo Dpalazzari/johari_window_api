@@ -5,7 +5,7 @@
 ## Quick overview
 This is a tool developed at the Turing School, based on the [Johari Window](https://en.wikipedia.org/wiki/Johari_window) Exercise developed in 1955 by Joseph Luft and Harrington Ingham. This particular portion of the app supplies an API and back-end database for the front-end [Johari Window Project.](https://github.com/lucyconklin/johari-window)
 
-The production site can be located by clicking [here.](https://johariwindowapi.herokuapp.com/)
+The production site can be located by clicking [here](https://johariwindowapi.herokuapp.com/) and the live react app [here.](https://johariwindow.herokuapp.com/)
 
 ## Getting Started in Development Environment
 
