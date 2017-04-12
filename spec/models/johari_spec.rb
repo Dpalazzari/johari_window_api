@@ -81,7 +81,7 @@ RSpec.describe Johari, type: :model do
     describe '#window_with_freq' do
       context 'with arena adjectives' do
         it 'returns window' do
-          expected = [{ 'name': arena_adj.name, 'frequency': 4.0}]
+          expected = [{ 'name': arena_adj.name, 'frequency': 6.0}]
           result = johari.window_with_freq(johari.arena_adjectives)
 
           expect(result).to eq expected
@@ -90,7 +90,7 @@ RSpec.describe Johari, type: :model do
 
       context 'blind spot adjectives' do
         it 'with returns window' do
-          expected = [{ 'name': blind_adj.name, 'frequency': 6.0 }]
+          expected = [{ 'name': blind_adj.name, 'frequency': 9.0 }]
           result = johari.window_with_freq(johari.blind_spot_adjectives)
 
           expect(result).to eq expected
