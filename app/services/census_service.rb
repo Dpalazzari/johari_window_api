@@ -19,17 +19,24 @@ class CensusService
     end
   end
 
-  def self.get_cohort_by_github(username)
-    new.get_cohort_by_github(username)
+  def self.get_data_by_github(username)
+    new.get_data_by_github(username)
   end
 
-  def get_cohort_by_github(username)
+  def get_data_by_github(username)
+    res = get_data(username)
+    cohort = res['cohort']['name'] rescue nil
+    roles = res['roles'].map { |role| role['name'] } rescue nil
+    { cohort: cohort, roles: roles }
+  end
+
+  def get_data(username)
     res = conn.get do |req|
       req.url '/api/v1/users/by_github'
       req.params['q'] = username
       req.params['access_token'] = ENV['CENSUS_TOKEN']
     end
-    JSON.parse(res.body)['cohort']['name'] rescue nil
+    JSON.parse(res.body)
   end
 
 end

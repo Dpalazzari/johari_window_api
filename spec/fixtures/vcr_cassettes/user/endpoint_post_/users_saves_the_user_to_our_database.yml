@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Mon, 10 Apr 2017 21:58:24 GMT
+      - Wed, 12 Apr 2017 22:53:19 GMT
       Connection:
       - keep-alive
       X-Frame-Options:
@@ -37,9 +37,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2c07829f-4307-4f89-827a-5e042d070767
+      - f46eb818-df87-4349-923b-8e503aa81fef
       X-Runtime:
-      - '0.025286'
+      - '0.025866'
       Vary:
       - Origin
       Transfer-Encoding:
@@ -51,5 +51,5 @@ http_interactions:
       string: '{"id":54,"first_name":"Drew","last_name":"Palazzari","cohort":{"id":3,"name":"1610-BE","created_at":"2017-02-14T22:18:26.808Z","updated_at":"2017-02-14T22:22:35.658Z","status":"active"},"image_url":"http://s3.amazonaws.com/turingschool-census/users/images/000/000/054/original/drew_turing.jpg?1491509899","email":"drewpalazzari@hotmail.com","slack":"dpalazzari","stackoverflow":"http://stackoverflow.com/users/7497701/dpalazzari","linked_in":"drewpalazzari","git_hub":"Dpalazzari","twitter":"drew_palazzari","roles":[{"id":12,"name":"active
         student","created_at":"2017-02-14T22:18:26.885Z","updated_at":"2017-02-14T22:18:26.885Z"}],"groups":[]}'
     http_version: 
-  recorded_at: Mon, 10 Apr 2017 21:58:25 GMT
+  recorded_at: Wed, 12 Apr 2017 22:53:19 GMT
 recorded_with: VCR 3.0.3

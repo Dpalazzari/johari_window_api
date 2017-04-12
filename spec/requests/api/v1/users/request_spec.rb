@@ -30,10 +30,11 @@ describe 'User endpoint', type: :request do
       expect(raw_user['token']).to eq(attrs[:user][:token])
       expect(raw_user['cohort_id']).to be_a Integer
 
-      User.first.reload
+      user = User.first
 
       expect(User.count).to eq(1)
-      expect(User.first.cohort.name).to eq('1610-BE')
+      expect(user.cohort.name).to eq '1610-BE'
+      expect(user.role).to eq 'student'
     end
 
     it 'returns an error if not all attributes are provided' do
