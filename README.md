@@ -7,7 +7,7 @@ This is a tool developed at the Turing School, based on the [Johari Window](http
 
 The production site can be located by clicking [here.](https://johariwindowapi.herokuapp.com/)
 
-## Getting Started
+## Getting Started in Development Environment
 
 To get this project running on your (mac) machine:
 
@@ -164,16 +164,24 @@ For a given github username, this endpoint will return JSON of a matching user.
   }
 ```
 
-## Development Environment
-
 ## Production Environment
+
+Any server in production environment will need to compensate for CORS. Gem `gem 'rack-cors' ` in the gemfile adds a cors.rb file to config/initializers. 
+
+Also, Your app will need an access_token from [Turing's Census App.](https://github.com/turingschool-projects/census)
 
 ## Customization
 The seed file can be found in `/db/seeds.rb`. We made use of one of our favorite gems here: [Faker](https://github.com/stympy/faker). Check out the docs to see other possibilities and seed your own custom data for your test environment.
 
-## Common Issues
-
 ## Going Forward
+
+- Our Johari Window API will pull all Turing student data down from Census. The Johari Window React App will authenticate users through github, which will allow the front-end app to send a github username to the census API and find each student's user object from the database. Turing students will need to sign in through the react APP just once to be added to the API database.
+
+- We want two rake tasks:
+    - Rake task that updates students with the cohort they are in.
+    - Rake Task that generates a new access_token from Census (which expires every 90 days).
+    
+- These two Rake Tasks should make it easier for [Allison](https://github.com/allisonreusinger) to use.
 
 ## Primary Contributors
 
