@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :described, foreign_key: :describer_id, class_name: "Description"
   # users that this user has described
   has_many :described_users, through: :described, source: :describer
-  
+
   # who this user has been assigned to describe
   has_many :assignments, foreign_key: :assignee_id
   has_many :users_to_describe, through: :assignments, source: :assigned
@@ -42,7 +42,9 @@ class User < ApplicationRecord
 
   def add_cohort
     cohort_name = CensusService.get_cohort_by_github(github)
-    self.cohort = Cohort.find_or_create_by(name: cohort_name)
-    self.save
+    if cohort_name
+      self.cohort = Cohort.find_or_create_by(name: cohort_name)
+      self.save
+    end
   end
 end

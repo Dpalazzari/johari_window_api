@@ -29,7 +29,7 @@ class CensusService
       req.params['q'] = username
       req.params['access_token'] = ENV['CENSUS_TOKEN']
     end
-    JSON.parse(res.body)['cohort']['name']
+    JSON.parse(res.body)['cohort']['name'] rescue nil
   end
 
 end
