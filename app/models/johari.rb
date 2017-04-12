@@ -6,6 +6,10 @@ class Johari
     @user = user
   end
 
+  def adj_per_johari
+    15
+  end
+
   def self_described
     descriptions = user.descriptions.where('describer_id = ?', user.id)
     descriptions.all.map {|description| description.adjective }
@@ -30,7 +34,7 @@ class Johari
   end
 
   def window_with_freq(adjectives)
-    total = peer_described.count.to_f / 10
+    total = peer_described.count.to_f / adj_per_johari
     counts = get_counts(adjectives)
     counts.map do |adj, count|
       {'name': adj, 'frequency': (count.to_f / total) }
