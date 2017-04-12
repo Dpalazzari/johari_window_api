@@ -19,8 +19,10 @@ class User < ApplicationRecord
   has_many :users_described_by, through: :assigned_to, source: :assignee
 
   validates :github, :token, presence: true, uniqueness: true
-  validates :name, presence: true
+  validates :name, :role, presence: true
   belongs_to :cohort, optional: true
+
+  enum role: %w(student staff)
 
   def find_assignments_and_users
     users_to_describe.map do |user|

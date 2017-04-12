@@ -18,8 +18,25 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :github }
     it { is_expected.to validate_presence_of :token } 
+    it { is_expected.to validate_presence_of :role } 
     it { is_expected.to validate_uniqueness_of :github } 
     it { is_expected.to validate_uniqueness_of :token }  
+  end
+
+  describe 'role' do
+    it 'defaults to student' do
+      user = create(:user)
+
+      expect(user.role).to eq 'student'
+      expect(user.student?).to be_truthy
+    end
+
+    it 'set to staff' do
+      user = create(:user, role: 1)
+
+      expect(user.role).to eq 'staff'
+      expect(user.staff?).to be_truthy
+    end
   end
 
   describe 'methods' do
