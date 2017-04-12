@@ -42,10 +42,10 @@ class Johari
   end
 
   def get_counts(adjectives)
-    counts = adjectives.reduce(Hash.new(0)) do |freq, adj|
+    adjectives.reduce(Hash.new(0)) do |freq, adj|
       freq[adj.name] += 1
       freq
-    end
+    end.sort_by { |adj, count| count }.reverse.to_h
   end
 
   def arena_adjectives
