@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://turing-census.herokuapp.com/api/v1/users/by_github?access_token=<CENSUS_TOKEN>&q=kheppenstall
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Wed, 12 Apr 2017 22:53:20 GMT
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"86c4f1458ccf040553d3fe72651ae34c"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 7534bce3-f41f-4c0f-91ac-bb50545116a3
+      X-Runtime:
+      - '0.025039'
+      Vary:
+      - Origin
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"id":41,"first_name":"Kyle","last_name":"Heppenstall","cohort":{"id":3,"name":"1610-BE","created_at":"2017-02-14T22:18:26.808Z","updated_at":"2017-02-14T22:22:35.658Z","status":"active"},"image_url":"http://s3.amazonaws.com/turingschool-census/users/images/000/000/041/original/headshot.jpg?1488385631","email":"kyle.heppenstall@gmail.com","slack":"kheppenstall","stackoverflow":"https://stackexchange.com/users/9908873/kyle-heppenstall","linked_in":"kyleheppenstall","git_hub":"kheppenstall","twitter":"","roles":[{"id":12,"name":"active
+        student","created_at":"2017-02-14T22:18:26.885Z","updated_at":"2017-02-14T22:18:26.885Z"}],"groups":[]}'
+    http_version: 
+  recorded_at: Wed, 12 Apr 2017 22:53:21 GMT
+recorded_with: VCR 3.0.3

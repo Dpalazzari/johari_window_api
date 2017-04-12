@@ -42,10 +42,20 @@ class User < ApplicationRecord
     self.descriptions.where("describer_id = ?", describer_id).count == descriptions.count && descriptions != []
   end
 
-  def add_cohort
-    cohort_name = CensusService.get_cohort_by_github(github)
-    if cohort_name
-      self.cohort = Cohort.find_or_create_by(name: cohort_name)
+  def add_cohort_and_role
+    data = CensusService.get_data_by_github(github)
+    add_cohort(data[:cohort]) if data[:cohort]
+    add_role(data[:roles]) if data[:roles]
+  end
+
+  def add_cohort(cohort_name)
+    self.cohort = Cohort.find_or_create_by(name: cohort_name)
+    self.save
+  end
+
+  def add_role(census_roles)
+    if census_roles.include?('staff')
+      self.role = 1
       self.save
     end
   end
