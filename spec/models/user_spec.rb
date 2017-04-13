@@ -18,8 +18,25 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :github }
     it { is_expected.to validate_presence_of :token } 
+    it { is_expected.to validate_presence_of :role } 
     it { is_expected.to validate_uniqueness_of :github } 
     it { is_expected.to validate_uniqueness_of :token }  
+  end
+
+  describe 'role' do
+    it 'defaults to student' do
+      user = create(:user)
+
+      expect(user.role).to eq 'student'
+      expect(user.student?).to be_truthy
+    end
+
+    it 'set to staff' do
+      user = create(:user, role: 1)
+
+      expect(user.role).to eq 'staff'
+      expect(user.staff?).to be_truthy
+    end
   end
 
   describe 'methods' do
@@ -57,11 +74,60 @@ RSpec.describe User, type: :model do
       expect(result).to be_truthy
     end
 
-    it '#add_cohort', vcr: true do
-      user = create(:user, github: 'kheppenstall')
-      user.add_cohort
+    it '#add_cohort' do
+      user = create(:user)
+      user.add_cohort('1610-BE')
 
       expect(user.cohort.name).to eq '1610-BE'
+    end
+  
+    context '#add_role' do
+      it 'it adds student role' do
+        user = create(:user)
+        user.add_role(['active student'])
+
+        expect(user.role).to eq 'student'
+      end
+
+      it 'adds staff role for staff' do
+        user = create(:user)
+        user.add_role(['staff'])
+
+        expect(user.role).to eq 'staff'
+      end
+
+      it 'adds staff role for admin' do
+        user = create(:user)
+        user.add_role(['staff', 'admin'])
+
+        expect(user.role).to eq 'staff'
+      end
+    end
+
+    context 'add_cohort_and_role' do
+      it 'adds for student based on census data', vcr: true do
+        user = create(:user, github: 'Dpalazzari')
+        user.add_cohort_and_role
+
+        expect(user.role).to eq 'student'
+        expect(user.cohort.name).to eq '1610-BE'
+      end
+
+      it 'adds for cohort and role for staff based on census data', vcr: true do
+        user = create(:user, github: 'allisonreusinger')
+        user.add_cohort_and_role
+
+        expect(user.role).to eq 'staff'
+        expect(user.cohort).to be_nil
+      end
+
+      it 'adds for user without census login based on census data', vcr: true do
+        user = create(:user, github: 'invalid_github_name')
+        user.add_cohort_and_role
+
+        expect(user.role).to eq 'student'
+        expect(user.cohort).to be_nil
+      end
     end
   end
 end

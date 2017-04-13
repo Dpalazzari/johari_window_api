@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://turing-census.herokuapp.com/api/v1/users/by_github?access_token=<CENSUS_TOKEN>&q=allisonreusinger
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Wed, 12 Apr 2017 22:53:20 GMT
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"ef274f6efa635dfccc476d50526e0ea2"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 37b9a028-e0d2-47d5-82e3-f7582eb0ac71
+      X-Runtime:
+      - '0.018404'
+      Vary:
+      - Origin
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"id":59,"first_name":"Allison","last_name":"Singer","cohort":null,"image_url":"http://s3.amazonaws.com/turingschool-census/users/images/000/000/059/original/Allison_Reu_Singer.jpeg?1488387100","email":"allison@turing.io","slack":"allison_reu_singer","stackoverflow":"","linked_in":"allisonreu","git_hub":"allisonreusinger","twitter":"a_reuster","roles":[{"id":18,"name":"staff","created_at":"2017-02-14T22:18:26.993Z","updated_at":"2017-02-14T22:18:26.993Z"},{"id":17,"name":"admin","created_at":"2017-02-14T22:18:26.978Z","updated_at":"2017-02-14T22:18:26.978Z"}],"groups":[]}'
+    http_version: 
+  recorded_at: Wed, 12 Apr 2017 22:53:21 GMT
+recorded_with: VCR 3.0.3
