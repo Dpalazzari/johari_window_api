@@ -8,7 +8,7 @@ end
 
 gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.3'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'faraday'
 gem 'rack-cors'
